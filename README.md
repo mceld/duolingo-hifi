@@ -6,8 +6,12 @@ This project is part of an RIT design project and analysis for ISTE 264
 information on the premises and technologies developed prior to this 
 prototype can be found there.
 
-The project was developed using FramerJS. The documentation for the 
-Framer boilerplate can be found below and the documentation for each 
+This project was developed using FramerJS.  You can use the 
+[boilerplate](https://github.com/jchavarri/framer-boilerplate) to run 
+this app by replacing the contents of the `app/` directory with the 
+contents of this project. The documentation for running the Framer 
+boilerplate with `npm` and `gulp` 
+can be found below and the documentation for each 
 framer module can be found under `modules/documentation.md`
 
 

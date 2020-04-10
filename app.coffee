@@ -9,7 +9,7 @@ motion = require 'motionCurves'
 # Framer.Extras.Hints.disable()
 
 button = new Button
-
+	label: "Check"
 
 helloWorld = new Type
 	uwpStyle: "header"

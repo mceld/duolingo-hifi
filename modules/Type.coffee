@@ -16,7 +16,7 @@ class exports.Type extends TextLayer
 			color: SystemColor.baseHigh
 			fontSize: 15
 			lineHeight: 1.333
-			fontWeight: 400
+			fontWeight: 800
 
 		@on "change:uwpStyle", ->
 			@setStyle()

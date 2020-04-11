@@ -1,0 +1,70 @@
+[
+    {
+        "id" : 0,
+        "exerciseName" : "traceChinese",
+        "header" : "Trace this word",
+        "subheaderPart1" : "Definition: ",
+        "subheaderPart2" : "You",
+        "audio" : "audio/you.ogg",
+        "pronunciation" : "nǐ",
+        "definition" : "you"
+    },
+    {
+        "id" : 1,
+        "exerciseName" : "traceRussian",
+        "header" : "Trace this word",
+        "subheaderPart1" : "Definition: ",
+        "subheaderPart2" : "Morning",
+        "audio" : "audio/morning.ogg",
+        "pronunciation" : "утро",
+        "definition" : "morning"
+    },
+    {
+        "id" : 2,
+        "exerciseName" : "writeChinese",
+        "header" : "Write this word",
+        "subheaderPart1" : "Definition: ",
+        "subheaderPart2" : "You",
+        "audio" : "audio/you.ogg",
+        "pronunciation" : "nǐ",
+        "definition" : "you"
+    },
+    {
+        "id" : 3,
+        "exerciseName" : "writeRussian",
+        "header" : "Write this word",
+        "subheaderPart1" : "Definition: ",
+        "subheaderPart2" : "Morning",
+        "audio" : "audio/morning.ogg",
+        "pronunciation" : "утро",
+        "definition" : "morning"
+    },
+    {
+        "id" : 4,
+        "exerciseName" : "radicalRecall",
+        "header" : "Which of these radicals means “person”?",
+        "subheaderPart1" : "",
+        "subheaderPart2" : "",
+        "audioTile1" : "audio/woman.ogg",
+        "audioTile2" : "audio/heart.ogg",
+        "audioTile3" : "audio/hand.ogg",
+        "audioTile4" : "audio/person.ogg",
+        "pronunciation" : "",
+        "definition" : ""
+    },
+    {
+        "id" : 5,
+        "exerciseName" : "radicalMatching",
+        "header" : "Match each character with its radical form",
+        "subheaderPart1" : "",
+        "subheaderPart2" : "",
+        "audioTile1" : "audio/heart.ogg",
+        "audioTile2" : "audio/person.ogg",
+        "audioTile3" : "audio/person.ogg",
+        "audioTile4" : "audio/heart.ogg",
+        "audioTile5" : "audio/hand.ogg",
+        "audioTile6" : "audio/hand.ogg",
+        "pronunciation" : "",
+        "definition" : ""
+    }
+]

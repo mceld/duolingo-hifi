@@ -117,3 +117,14 @@ userCorrect = ->
 moveExercise = ->
 	currentExercise = ++currentExercise
 		
+
+# TODO
+# Check for keyboard event to store user's correctness, reset this correctness to false after elements
+# update visually upon "check" being hit
+# Add main canvas and pronunciation interaction
+# Add images and image showing functionality to trace and write (implement hints as well), interactive element/canvas
+# Improve text spacing on 5th and 6th exercises
+# Add interactive elements for 5th and 6th exercises and their answer checking logic
+# add sound?
+
+# All exercises, if failed, should return to the default with the same exercise, giving the users another chance

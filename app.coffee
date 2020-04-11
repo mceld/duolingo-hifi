@@ -96,11 +96,12 @@ definitionSubType2 = new Type
 answer = false
 
 setAnswer = (code) ->
-	if code == 48
+	if code == 48 # 0 on keyboard
 		answer = false
-	else if code == 49
+	else if code == 49 # 1 on keyboard
 		answer = true
 
+# check for event keycode and run to setAnswer
 # window.addEventListener("keydown", setAnswer(event.keyCode))
 
 window.addEventListener("click", checkButton, userCorrect)

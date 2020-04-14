@@ -167,6 +167,7 @@ definitionSubType = new Type
 # Main Tile definition and properties
 
 writingTile = new Layer
+	visible: true
 	backgroundColor: "#FFFFFF"
 	borderWidth: 1.5
 	borderColor: "#ababab"
@@ -179,52 +180,338 @@ writingTile = new Layer
 	shadowY: 9
 	shadowColor: "rgba(196, 196, 196, 0.6)"
 
+# shift tile up on
 writingTile.animate
 	y: Align.center()
 
-
-writingTrace = new Layer
-	width: 250
-	height: 250
-	backgroundColor: "#FFFFFF"
+writingTileImage = new Layer
+	width: 280
+	height: 280
+	backgroundColor: "transparent"
 	x: Align.center()
 	y: Align.center()
 	visible: true
 	parent: writingTile
-	image: "images/traceChinese.png" # window.exerciseData[currentExercise].traceImage
+	image: window.exerciseData[window.currentExercise].traceImage
 
-writingCorrect = new Layer
-	width: 250
-	height: 250
-	backgroundColor: "#FFFFFF"
+writingTileImage.states.correct =
+	writingTileImage.image = window.exerciseData[window.currentExercise].correctImage
+
+writingTileImage.states.incorrect =
+	writingTileImage.image = window.exerciseData[window.currentExercise].incorrectImage
+
+# Tiles for recognition and matching
+
+# parent tile
+
+parentTile = new Layer
+	width: 350
+	height: 350
 	x: Align.center()
 	y: Align.center()
+	backgroundColor: "transparent"
+
+recogTile1 = new Layer
+	borderColor: "#ababab"
+	parent: parentTile
+	width: 150
+	height: 150
+	x: Align.left()
+	y: Align.top(20)
+	image: "./images/correctChinese.png"
+	borderWidth: 1.5
+	borderColor: "#ababab"
+	borderRadius: 15
+	shadowBlur: 10
+	shadowY: 9
+	shadowColor: "rgba(196, 196, 196, 0.6)"
+	visible: false
+	backgroundColor:"#FFFFFF"
+	image: "images/recogTile1.png"
+
+recogTile1.states.load =
+	y: Align.top()
+
+recogTile2 = new Layer
+	borderColor: "#ababab"
+	parent: parentTile
+	width: 150
+	height: 150
+	x: Align.right()
+	y: Align.top(20)
+	image: "./images/correctChinese.png"
+	borderWidth: 1.5
+	borderColor: "#ababab"
+	borderRadius: 15
+	shadowBlur: 10
+	shadowY: 9
+	shadowColor: "rgba(196, 196, 196, 0.6)"
+	visible: false
+	backgroundColor:"#FFFFFF"
+	image: "images/recogTile2.png"
+
+recogTile2.states.load =
+	y: Align.top()
+
+recogTile3 = new Layer
+	borderColor: "#ababab"
+	parent: parentTile
+	width: 150
+	height: 150
+	x: Align.right()
+	y: Align.bottom(20)
+	image: "./images/correctChinese.png"
+	borderWidth: 1.5
+	borderColor: "#ababab"
+	borderRadius: 15
+	shadowBlur: 10
+	shadowY: 9
+	shadowColor: "rgba(196, 196, 196, 0.6)"
+	visible: false
+	backgroundColor:"#FFFFFF"
+	image: "images/recogTile3.png"
+
+recogTile3.states.load =
+	y: Align.bottom()
+
+recogTile4 = new Layer
+	borderColor: "#ababab"
+	parent: parentTile
+	width: 150
+	height: 150
+	x: Align.left()
+	y: Align.bottom(20)
+	image: "./images/correctChinese.png"
+	borderWidth: 1.5
+	borderColor: "#ababab"
+	borderRadius: 15
+	shadowBlur: 10
+	shadowY: 9
+	shadowColor: "rgba(196, 196, 196, 0.6)"
+	visible: false
+	backgroundColor:"#FFFFFF"
+	image: "images/recogTile4.png"
+
+recogTile4.states.load =
+	y: Align.bottom()
+
+parentMatching = new Layer
 	visible: true
-	parent: writingTile
-	image: window.exerciseData[currentExercise].correctImage
-
-writingHint = new Layer
-	backgroundColor: "#FFFFFF"
+	width: 350
+	height: 350
 	x: Align.center()
 	y: Align.center()
-	visible: false
-	parent: writingTile
-	image: window.exerciseData[currentExercise].hintImage
+	backgroundColor: "transparent"
 
-writingIncorrect = new Layer
-	backgroundColor: "#FFFFFF"
-	x: Align.center()
-	y: Align.center()
+matchingTile1 = new Layer
+	#image
+	borderColor: "#ababab"
+	parent: parentMatching
+	width: 100
+	height: 100
+	x: Align.left()
+	y: Align.top(20)
+	image: "./images/correctChinese.png"
+	borderWidth: 1.5
+	borderColor: "#ababab"
+	borderRadius: 15
+	shadowBlur: 10
+	shadowY: 9
+	shadowColor: "rgba(196, 196, 196, 0.6)"
 	visible: false
+	backgroundColor:"#FFFFFF"
+
+matchingTile1.states.click = 
+	borderColor:"#1AA0A9"
+	backgroundColor: "rgba(213, 247, 255, 0.6)"
+	y: Align.top()
+
+matchingTile1.states.load =
+	y: Align.top()
+
+matchingTile2 = new Layer
+	#image
+	borderColor: "#ababab"
+	parent: parentMatching
+	width: 100
+	height: 100
+	x: Align.center()
+	y: Align.top(20)
+	image: "./images/correctChinese.png"
+	borderWidth: 1.5
+	borderColor: "#ababab"
+	borderRadius: 15
+	shadowBlur: 10
+	shadowY: 9
+	shadowColor: "rgba(196, 196, 196, 0.6)"
+	visible: false
+	backgroundColor:"#FFFFFF"
+
+matchingTile2.states.click = 
+	borderColor:"#1AA0A9"
+	backgroundColor: "rgba(213, 247, 255, 0.6)"
+	y: Align.top()
+
+matchingTile2.states.load =
+	y: Align.top()
+
+matchingTile3 = new Layer
+	#image
+	borderColor: "#ababab"
+	parent: parentMatching
+	width: 100
+	height: 100
+	x: Align.right()
+	y: Align.top(20)
+	image: "./images/correctChinese.png"
+	borderWidth: 1.5
+	borderColor: "#ababab"
+	borderRadius: 15
+	shadowBlur: 10
+	shadowY: 9
+	shadowColor: "rgba(196, 196, 196, 0.6)"
+	visible: false
+	backgroundColor:"#FFFFFF"
+
+matchingTile3.states.click = 
+	borderColor:"#1AA0A9"
+	backgroundColor: "rgba(213, 247, 255, 0.6)"
+	y: Align.top()
+
+matchingTile3.states.load =
+	y: Align.top()
+
+matchingTile4 = new Layer
+	#image
+	borderColor: "#ababab"
+	parent: parentMatching
+	width: 100
+	height: 100
+	x: Align.left()
+	y: Align.bottom(-90)
+	image: "./images/correctChinese.png"
+	borderWidth: 1.5
+	borderColor: "#ababab"
+	borderRadius: 15
+	shadowBlur: 10
+	shadowY: 9
+	shadowColor: "rgba(196, 196, 196, 0.6)"
+	visible: false
+	backgroundColor:"#FFFFFF"
+
+matchingTile4.states.click = 
+	borderColor:"#1AA0A9"
+	backgroundColor: "rgba(213, 247, 255, 0.6)"
+	y: Align.bottom(-110)
+
+matchingTile4.states.load =
+	y: Align.bottom(-110)
+
+matchingTile5 = new Layer
+	#image
+	borderColor: "#ababab"
+	parent: parentMatching
+	width: 100
+	height: 100
+	x: Align.center()
+	y: Align.bottom(-90)
+	image: "./images/correctChinese.png"
+	borderWidth: 1.5
+	borderColor: "#ababab"
+	borderRadius: 15
+	shadowBlur: 10
+	shadowY: 9
+	shadowColor: "rgba(196, 196, 196, 0.6)"
+	visible: false
+	backgroundColor:"#FFFFFF"
+
+matchingTile5.states.click = 
+	borderColor:"#1AA0A9"
+	backgroundColor: "rgba(213, 247, 255, 0.6)"
+	y: Align.bottom(-110)
+
+matchingTile5.states.load =
+	y: Align.bottom(-110)
+
+matchingTile6 = new Layer
+	#image
+	borderColor: "#ababab"
+	parent: parentMatching
+	width: 100
+	height: 100
+	x: Align.right()
+	y: Align.bottom(-90)
+	image: "./images/correctChinese.png"
+	borderWidth: 1.5
+	borderColor: "#ababab"
+	borderRadius: 15
+	shadowBlur: 10
+	shadowY: 9
+	shadowColor: "rgba(196, 196, 196, 0.6)"
+	visible: false
+	backgroundColor:"#FFFFFF"
+
+matchingTile6.states.click = 
+	borderColor:"#1AA0A9"
+	backgroundColor: "rgba(213, 247, 255, 0.6)"
+	y: Align.bottom(-110)
+
+matchingTile6.states.load =
+	y: Align.bottom(-110)
+
+# hint button and pronunciation aide
+
+topOfTileParent = new Layer
+	backgroundColor: "transparent"
+	height: 50
+	x: Align.center()
+	y: Align.center(-200)
+	borderStyle: "dotted"
+	borderWidth:
+        top: 0
+        right: 0
+        bottom: 8
+        left: 0
+
+wordDisplayType = new Type
+	parent: topOfTileParent
+	uwpStyle: "subheader"
+	text: window.exerciseData[window.currentExercise].pronunciation
+	x: Align.center(-540)
+	y: Align.center(-206.5)
+
+wordDisplayPopUp = new Layer
+	parent: topOfTileParent
+
+
+hintButton = new Layer
 	parent: writingTile
-	image: window.exerciseData[currentExercise].incorrectImage
+	width: 50
+	height: 50
+	backgroundColor: "#1AA0A9"
+	label: "HINT"
+	borderRadius: 15
+	shadowBlur: 10
+	shadowY: 4
+	shadowColor: "rgba(26, 159, 169, 0.35)"
+	x: Align.left(-75)
+	y: Align.center()
+	opacity: 0
+
+hintButton.states.load = 
+	opacity: 100
+
+hintButton.states.used = 
+	backgroundColor: "grey"
+	opacity: .4
+
+
 
 # Interaction and correctness checkers
 
-answer = false
+answer = true
 
 setAnswer = (code) ->
-	alert("check")
 	if code == 48 # 0 on keyboard
 		answer = false
 	else if code == 49 # 1 on keyboard
@@ -237,28 +524,58 @@ setAnswer = (code) ->
 # 	layer.width = Screen.width
 # 	layer.height = Screen.height
 
-window.addEventListener "keypress", setAnswer(event)
+window.addEventListener "keypress", (e) => setAnswer(e.keyCode)
 
 checkButton.on "click", -> userCorrect()
 continueButton.on "click", -> moveExercise()
 
 restoreDefault = ->
+	
 	if window.currentExercise > 5
 		return null
+	
+	if window.exerciseData[window.currentExercise].exerciseName == "writeChinese" or window.exerciseData[window.currentExercise].exerciseName == "writeRussian"
+		hintButton.animate "load"
+	else
+		hintButton.animate "default"
+
 	if window.currentExercise == 4 or window.currentExercise == 5
+		topOfTileParent.visible = false
+		writingTile.visible = false
 		titleType.scale = .5
 		titleType.x = Align.left(-105)
 		titleType.y = 0
 		titleType.width = 600
+
+	if window.currentExercise == 4
+		for tile in parentTile.children
+			tile.visible = true
+			tile.animate "load"
+
+	if window.currentExercise == 5
+		for i in parentTile.children
+			i.visible = false
+		
+		for j in parentMatching.children
+			j.visible = true
+			j.animate "load"
+		# for tile in parentMatching
+		# 	tile.visible = true
+		# 	tile.animate "load"
+
 	checkButton.animate "default"
 	continueButton.animate "default"
+
 	correctLayer.animate "default"
 	incorrectLayer.animate "default"
+
 	correctText.animate "default"
 	incorrectText.animate "default"
+
 	titleType.text = window.exerciseData[window.currentExercise].header
 	definitionSubType.text = window.exerciseData[window.currentExercise].subheader
-
+	wordDisplayType.text = window.exerciseData[window.currentExercise].pronunciation
+	answer = true
 
 moveExercise = ->
 
@@ -272,6 +589,9 @@ moveExercise = ->
 userCorrect = ->
 	if answer
 		# Change height of correct Layer, opacity of correct Text
+		
+		writingTileImage.animate "correct"
+
 		checkButton.animate "correct"
 		checkButton.visible = false
 

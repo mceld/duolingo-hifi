@@ -450,6 +450,13 @@ matchingTile6.states.click =
 matchingTile6.states.load =
 	y: Align.bottom(-110)
 
+# for child in parentMatching
+# 	child.on "click", -> 
+# 		if child.backgroundColor == "#FFFFFF"
+# 			child.animate "click"
+# 		else
+# 			child.animate "default"
+
 # hint button and pronunciation aide
 
 topOfTileParent = new Layer
@@ -468,11 +475,25 @@ wordDisplayType = new Type
 	parent: topOfTileParent
 	uwpStyle: "subheader"
 	text: window.exerciseData[window.currentExercise].pronunciation
-	x: Align.center(-270)
+	x: Align.center(-273)
 	y: Align.center(-209)
 
-wordDisplayPopUp = new Layer
-
+# wordDisplayPopUp = new Layer
+# 	borderColor: "#ababab"
+# 	parent: topOfTileParent
+# 	width: 200
+# 	height: 50
+# 	x: Align.center(-540)
+# 	y: Align.center(-228)
+# 	borderWidth: 1.5
+# 	borderColor: "#ababab"
+# 	borderRadius: 8
+# 	shadowBlur: 10
+# 	shadowY: 9
+# 	shadowColor: "rgba(196, 196, 196, 0.6)"
+# 	visible: true
+# 	backgroundColor:"#FFFFFF"
+# 	opacity: 1
 
 hintButton = new Layer
 	parent: writingTile
@@ -489,17 +510,29 @@ hintButton = new Layer
 	opacity: 0
 
 hintButton.states.load = 
+	backgroundColor: "#1AA0A9"
 	opacity: 100
 
 hintButton.states.used = 
-	backgroundColor: "grey"
+	backgroundColor: "ababab"
 	opacity: .4
 
+hintButton.animationOptions = 
+	time: .2
 
+usedHint = false
+
+useHint = ->
+	if !usedHint
+		writingTileImage.image = window.exerciseData[window.currentExercise].hintImage
+		hintButton.animate "used"
+	
+
+hintButton.on "click", -> useHint()
 
 # Interaction and correctness checkers
 
-answer = true
+answer = false
 
 setAnswer = (code) ->
 	if code == 48 # 0 on keyboard
@@ -528,7 +561,6 @@ restoreDefault = ->
 		writingTileImage.image = ""
 		hintButton.animate "load"
 	if window.exerciseData[window.currentExercise].exerciseName == "traceChinese" or window.exerciseData[window.currentExercise].exerciseName == "traceRussian"
-		console.log("yo")
 		writingTileImage.image = window.exerciseData[window.currentExercise].traceImage
 		hintButton.animate "default"
 
@@ -568,14 +600,16 @@ restoreDefault = ->
 	titleType.text = window.exerciseData[window.currentExercise].header
 	definitionSubType.text = window.exerciseData[window.currentExercise].subheader
 	wordDisplayType.text = window.exerciseData[window.currentExercise].pronunciation
-	answer = true
+
+
+	answer = false
+	usedHint = false
 
 moveExercise = ->
 
 	if answer
 		window.currentExercise = ++window.currentExercise
 	restoreDefault()
-	console.log(window.exerciseData[window.currentExercise])
 
 	#Reset height of correct and incorrect Layers, opacity of correct and incorrect Text, content of checkButton
 
@@ -619,6 +653,6 @@ userCorrect = ->
 # Add images and image showing functionality to trace and write (implement hints as well), interactive element/canvas
 # Improve text spacing on 5th and 6th exercises
 # Add interactive elements for 5th and 6th exercises and their answer checking logic
-# add sound?
+# add sound
 
 # All exercises, if failed, should return to the default with the same exercise, giving the users another chance

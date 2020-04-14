@@ -194,11 +194,6 @@ writingTileImage = new Layer
 	parent: writingTile
 	image: window.exerciseData[window.currentExercise].traceImage
 
-writingTileImage.states.correct =
-	writingTileImage.image = window.exerciseData[window.currentExercise].correctImage
-
-writingTileImage.states.incorrect =
-	writingTileImage.image = window.exerciseData[window.currentExercise].incorrectImage
 
 # Tiles for recognition and matching
 
@@ -218,7 +213,6 @@ recogTile1 = new Layer
 	height: 150
 	x: Align.left()
 	y: Align.top(20)
-	image: "./images/correctChinese.png"
 	borderWidth: 1.5
 	borderColor: "#ababab"
 	borderRadius: 15
@@ -239,7 +233,6 @@ recogTile2 = new Layer
 	height: 150
 	x: Align.right()
 	y: Align.top(20)
-	image: "./images/correctChinese.png"
 	borderWidth: 1.5
 	borderColor: "#ababab"
 	borderRadius: 15
@@ -260,7 +253,6 @@ recogTile3 = new Layer
 	height: 150
 	x: Align.right()
 	y: Align.bottom(20)
-	image: "./images/correctChinese.png"
 	borderWidth: 1.5
 	borderColor: "#ababab"
 	borderRadius: 15
@@ -281,7 +273,6 @@ recogTile4 = new Layer
 	height: 150
 	x: Align.left()
 	y: Align.bottom(20)
-	image: "./images/correctChinese.png"
 	borderWidth: 1.5
 	borderColor: "#ababab"
 	borderRadius: 15
@@ -311,7 +302,7 @@ matchingTile1 = new Layer
 	height: 100
 	x: Align.left()
 	y: Align.top(20)
-	image: "./images/correctChinese.png"
+	image: "images/match1.png"
 	borderWidth: 1.5
 	borderColor: "#ababab"
 	borderRadius: 15
@@ -337,7 +328,7 @@ matchingTile2 = new Layer
 	height: 100
 	x: Align.center()
 	y: Align.top(20)
-	image: "./images/correctChinese.png"
+	image: "images/match2.png"
 	borderWidth: 1.5
 	borderColor: "#ababab"
 	borderRadius: 15
@@ -363,7 +354,7 @@ matchingTile3 = new Layer
 	height: 100
 	x: Align.right()
 	y: Align.top(20)
-	image: "./images/correctChinese.png"
+	image: "images/match3.png"
 	borderWidth: 1.5
 	borderColor: "#ababab"
 	borderRadius: 15
@@ -389,7 +380,7 @@ matchingTile4 = new Layer
 	height: 100
 	x: Align.left()
 	y: Align.bottom(-90)
-	image: "./images/correctChinese.png"
+	image: "images/match4.png"
 	borderWidth: 1.5
 	borderColor: "#ababab"
 	borderRadius: 15
@@ -415,7 +406,7 @@ matchingTile5 = new Layer
 	height: 100
 	x: Align.center()
 	y: Align.bottom(-90)
-	image: "./images/correctChinese.png"
+	image: "images/match5.png"
 	borderWidth: 1.5
 	borderColor: "#ababab"
 	borderRadius: 15
@@ -441,7 +432,7 @@ matchingTile6 = new Layer
 	height: 100
 	x: Align.right()
 	y: Align.bottom(-90)
-	image: "./images/correctChinese.png"
+	image: "images/match6.png"
 	borderWidth: 1.5
 	borderColor: "#ababab"
 	borderRadius: 15
@@ -477,11 +468,10 @@ wordDisplayType = new Type
 	parent: topOfTileParent
 	uwpStyle: "subheader"
 	text: window.exerciseData[window.currentExercise].pronunciation
-	x: Align.center(-540)
-	y: Align.center(-206.5)
+	x: Align.center(-270)
+	y: Align.center(-209)
 
 wordDisplayPopUp = new Layer
-	parent: topOfTileParent
 
 
 hintButton = new Layer
@@ -535,8 +525,11 @@ restoreDefault = ->
 		return null
 	
 	if window.exerciseData[window.currentExercise].exerciseName == "writeChinese" or window.exerciseData[window.currentExercise].exerciseName == "writeRussian"
+		writingTileImage.image = ""
 		hintButton.animate "load"
-	else
+	if window.exerciseData[window.currentExercise].exerciseName == "traceChinese" or window.exerciseData[window.currentExercise].exerciseName == "traceRussian"
+		console.log("yo")
+		writingTileImage.image = window.exerciseData[window.currentExercise].traceImage
 		hintButton.animate "default"
 
 	if window.currentExercise == 4 or window.currentExercise == 5
@@ -589,8 +582,8 @@ moveExercise = ->
 userCorrect = ->
 	if answer
 		# Change height of correct Layer, opacity of correct Text
-		
-		writingTileImage.animate "correct"
+		if window.exerciseData[window.currentExercise].exerciseName == "writeChinese" or window.exerciseData[window.currentExercise].exerciseName == "writeRussian" or window.exerciseData[window.currentExercise].exerciseName == "traceRussian" or window.exerciseData[window.currentExercise].exerciseName == "traceChinese"
+			writingTileImage.image = window.exerciseData[window.currentExercise].correctImage
 
 		checkButton.animate "correct"
 		checkButton.visible = false
@@ -604,6 +597,9 @@ userCorrect = ->
 		correctText.animate "active"
 
 	else
+		if window.exerciseData[window.currentExercise].exerciseName == "writeChinese" or window.exerciseData[window.currentExercise].exerciseName == "writeRussian" or window.exerciseData[window.currentExercise].exerciseName == "traceRussian" or window.exerciseData[window.currentExercise].exerciseName == "traceChinese"
+			writingTileImage.image = window.exerciseData[window.currentExercise].incorrectImage
+
 		checkButton.animate "incorrect"
 		checkButton.visible = false
 

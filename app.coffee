@@ -611,6 +611,8 @@ userCorrect = ->
 
 		incorrectText.animate "active"
 
+
+
 # TODO
 # Check for keyboard event to store user's correctness, reset this correctness to false after elements
 # Add main canvas and pronunciation interaction

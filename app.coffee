@@ -450,12 +450,20 @@ matchingTile6.states.click =
 matchingTile6.states.load =
 	y: Align.bottom(-110)
 
-# for child in parentMatching
-# 	child.on "click", -> 
+clickMatchingTile = (child) ->
+	if child.backgroundColor == "#FFFFFF"
+			child.animate "click"
+	else
+		child.animate "default"
+
+# for child in parentMatching.children
+# 	console.log(child)
+# 	child.on "click", ->
 # 		if child.backgroundColor == "#FFFFFF"
 # 			child.animate "click"
 # 		else
 # 			child.animate "default"
+
 
 # hint button and pronunciation aide
 
@@ -656,3 +664,5 @@ userCorrect = ->
 # add sound
 
 # All exercises, if failed, should return to the default with the same exercise, giving the users another chance
+
+# use framer property addListener to assign functions to tiles.

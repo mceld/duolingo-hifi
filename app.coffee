@@ -475,7 +475,7 @@ wordDisplayType = new Type
 	parent: topOfTileParent
 	uwpStyle: "subheader"
 	text: window.exerciseData[window.currentExercise].pronunciation
-	x: Align.center(-273)
+	x: Align.center(-540)
 	y: Align.center(-209)
 
 # wordDisplayPopUp = new Layer

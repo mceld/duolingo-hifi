@@ -7,7 +7,7 @@ information on the premises and technologies developed prior to this
 prototype can be found there.
 
 This project was developed using FramerJS.  You can use the 
-[boilerplate](https://github.com/jchavarri/framer-boilerplate) to run this app by replacing the contents of the `app/` directory with the contents of this project. The documentation for running the Framer boilerplate with `npm` and `gulp` 
+[boilerplate](https://github.com/jchavarri/framer-boilerplate) to run this app by replacing the contents of the `app/` directory with the contents of this project, and replacing the `images` directory with the one in this project. The documentation for running the Framer boilerplate with `npm` and `gulp` 
 can be found below and the documentation for each 
 framer module can be found under `modules/documentation.md`
 

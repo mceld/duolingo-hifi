@@ -456,14 +456,6 @@ clickMatchingTile = (child) ->
 	else
 		child.animate "default"
 
-# for child in parentMatching.children
-# 	console.log(child)
-# 	child.on "click", ->
-# 		if child.backgroundColor == "#FFFFFF"
-# 			child.animate "click"
-# 		else
-# 			child.animate "default"
-
 
 # hint button and pronunciation aide
 

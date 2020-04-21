@@ -9,7 +9,7 @@ motion = require 'motionCurves'
 # JSON calls
 window.exerciseData = require './exercise_data.json'
 window.currentExercise = 0
-window.tracePoint = 0
+window.currentChar = 0
 
 # If you want the purple outlines, comment this out
 # Framer.Extras.Hints.disable()
@@ -192,7 +192,7 @@ writingTileImage = new Layer
 	y: Align.center()
 	visible: true
 	parent: writingTile
-	image: window.exerciseData[window.currentExercise].traceImage
+	image: window.exerciseData[window.currentExercise].traceImages[0]
 
 
 # Tiles for recognition and matching
@@ -484,6 +484,7 @@ wordDisplayType = new Type
 	text: window.exerciseData[window.currentExercise].pronunciation
 	x: Align.center(-95)
 	y: Align.center(-215)
+	visible: true
 
 # wordDisplayPopUp = new Layer
 # 	borderColor: "#ababab"
@@ -518,10 +519,10 @@ hintButton = new Layer
 
 hintButton.states.load = 
 	backgroundColor: "#1AA0A9"
-	opacity: 100
+	opacity: 1
 
 hintButton.states.used = 
-	backgroundColor: "ababab"
+	backgroundColor: "#ababab"
 	opacity: .4
 
 hintButton.animationOptions = 
@@ -531,6 +532,10 @@ usedHint = false
 
 useHint = ->
 	if !usedHint
+
+		if window.currentExercise == 3
+			wordDisplayType.visible = true
+		
 		writingTileImage.image = window.exerciseData[window.currentExercise].hintImage
 		hintButton.animate "used"
 	
@@ -539,13 +544,25 @@ hintButton.on "click", -> useHint()
 
 # Interaction and correctness checkers
 
+
+
 answer = false
+
+updateChar = ->
+	console.log("check")
+	window.currentChar = ++window.currentChar
+	writingTileImage.image = window.exerciseData[window.currentExercise].traceImages[window.currentChar]
+
+
+
 
 setAnswer = (code) ->
 	if code == 48 # 0 on keyboard
 		answer = false
 	else if code == 49 # 1 on keyboard
 		answer = true
+	else if code == 50 # 2 on keyboard
+		updateChar()
 
 # check for event keycode and run to setAnswer
 # window.addEventListener("keydown", setAnswer(event.keyCode))
@@ -560,40 +577,59 @@ checkButton.on "click", -> userCorrect()
 continueButton.on "click", -> moveExercise()
 
 restoreDefault = ->
-	
-	if window.currentExercise > 5
-		return null
-	
-	if window.exerciseData[window.currentExercise].exerciseName == "writeChinese" or window.exerciseData[window.currentExercise].exerciseName == "writeRussian"
-		writingTileImage.image = ""
-		hintButton.animate "load"
-	if window.exerciseData[window.currentExercise].exerciseName == "traceChinese" or window.exerciseData[window.currentExercise].exerciseName == "traceRussian"
-		writingTileImage.image = window.exerciseData[window.currentExercise].traceImage
-		hintButton.animate "default"
 
-	if window.currentExercise == 4 or window.currentExercise == 5
-		topOfTileParent.visible = false
-		writingTile.visible = false
-		titleType.scale = .5
-		titleType.x = Align.left(-105)
-		titleType.y = 0
-		titleType.width = 600
+	window.currentChar = 0
 
-	if window.currentExercise == 4
-		for tile in parentTile.children
-			tile.visible = true
-			tile.animate "load"
+	switch window.currentExercise
 
-	if window.currentExercise == 5
-		for i in parentTile.children
-			i.visible = false
+		when 6
+			return null
+
+		when 5
+			wordDisplayType.visible = false
+			topOfTileParent.visible = false
+			writingTile.visible = false
+			titleType.scale = .5
+			titleType.x = Align.left(-105)
+			titleType.y = 0
+			titleType.width = 600
+
+			for i in parentTile.children
+				i.visible = false
 		
-		for j in parentMatching.children
-			j.visible = true
-			j.animate "load"
-		# for tile in parentMatching
-		# 	tile.visible = true
-		# 	tile.animate "load"
+			for j in parentMatching.children
+				j.visible = true
+				j.animate "load"
+
+		when 4
+			wordDisplayType.visible = false
+			topOfTileParent.visible = false
+			writingTile.visible = false
+			titleType.scale = .5
+			titleType.x = Align.left(-105)
+			titleType.y = 0
+			titleType.width = 600
+
+			for tile in parentTile.children
+				tile.visible = true
+				tile.animate "load"
+
+		when 3
+			hintButton.animate "load"
+			writingTileImage.image = window.exerciseData[window.currentExercise].traceImages[window.currentChar]
+			wordDisplayType.text = window.exerciseData[window.currentExercise].pronunciation
+			wordDisplayType.visible = false
+
+		when 2
+			hintButton.animate "load"
+			writingTileImage.image = window.exerciseData[window.currentExercise].traceImages[window.currentChar]
+			wordDisplayType.text = window.exerciseData[window.currentExercise].pronunciation
+
+		when 0, 1
+			hintButton.animate "default"
+			wordDisplayType.text = window.exerciseData[window.currentExercise].pronunciation
+			writingTileImage.image = window.exerciseData[window.currentExercise].traceImages[window.currentChar]
+
 
 	checkButton.animate "default"
 	continueButton.animate "default"
@@ -606,16 +642,17 @@ restoreDefault = ->
 
 	titleType.text = window.exerciseData[window.currentExercise].header
 	definitionSubType.text = window.exerciseData[window.currentExercise].subheader
-	wordDisplayType.text = window.exerciseData[window.currentExercise].pronunciation
 
 
 	answer = false
 	usedHint = false
 
+
 moveExercise = ->
 
 	if answer
 		window.currentExercise = ++window.currentExercise
+
 	restoreDefault()
 
 	#Reset height of correct and incorrect Layers, opacity of correct and incorrect Text, content of checkButton
@@ -637,9 +674,12 @@ userCorrect = ->
 
 		correctText.animate "active"
 
-	else
+		if window.currentExercise == 3
+			wordDisplayType.visible = true
+
+	else 
 		if window.exerciseData[window.currentExercise].exerciseName == "writeChinese" or window.exerciseData[window.currentExercise].exerciseName == "writeRussian" or window.exerciseData[window.currentExercise].exerciseName == "traceRussian" or window.exerciseData[window.currentExercise].exerciseName == "traceChinese"
-			writingTileImage.image = window.exerciseData[window.currentExercise].incorrectImage
+			writingTileImage.image = window.exerciseData[window.currentExercise].incorrectImages[window.currentChar]
 
 		checkButton.animate "incorrect"
 		checkButton.visible = false
@@ -652,15 +692,16 @@ userCorrect = ->
 
 		incorrectText.animate "active"
 
+		if window.currentExercise == 3
+			wordDisplayType.visible = true
+
 
 
 # TODO
-# Check for keyboard event to store user's correctness, reset this correctness to false after elements
-# Add main canvas and pronunciation interaction
-# Add images and image showing functionality to trace and write (implement hints as well), interactive element/canvas
-# Improve text spacing on 5th and 6th exercises
+# Add pronunciation interaction
 # Add interactive elements for 5th and 6th exercises and their answer checking logic
 # add sound
+# polish traceRussian and writeRussian tests
 
 # All exercises, if failed, should return to the default with the same exercise, giving the users another chance
 

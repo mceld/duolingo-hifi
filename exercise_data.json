@@ -8,8 +8,12 @@
         "pronunciation" : "nǐ",
         "definition" : "you",
         "correctImage" : "images/correctChinese.png",
-        "incorrectImage" : "images/incorrectChinese.png",
-        "traceImage" : "images/traceChinese.png",
+        "incorrectImages" : [
+            "images/incorrectChinese.png"
+        ],
+        "traceImages" : [
+            "images/traceChinese.png"
+        ],
         "hintImage" : ""
     },
     {
@@ -18,11 +22,21 @@
         "header" : "Trace this word",
         "subheader" : "Definition: Morning",
         "audio" : "audio/morning.ogg",
-        "pronunciation" : "утро",
+        "pronunciation": "утро",
         "definition" : "morning",
         "correctImage" : "images/correctRussian.png",
-        "incorrectImage" : "images/incorrectRussian.png",
-        "traceImage" : "images/traceRussian.png",
+        "incorrectImages" : [
+            "images/incorrectRussian1.png",
+            "images/incorrectRussian2.png",
+            "images/incorrectRussian3.png",
+            "images/incorrectRussian4.png"
+        ],
+        "traceImages" : [
+            "images/traceRussian1.png",
+            "images/traceRussian2.png",
+            "images/traceRussian3.png",
+            "images/traceRussian4.png"
+        ],
         "hintImage" : ""
     },
     {
@@ -34,8 +48,15 @@
         "pronunciation" : "nǐ",
         "definition" : "you",
         "correctImage" : "images/correctChinese.png",
-        "incorrectImage" : "images/incorrectChinese.png",
-        "traceImage" : "",
+        "incorrectImages" : [
+            "images/incorrectChinese.png"
+        ],
+        "traceImages" : [
+            "",
+            "",
+            "",
+            ""
+        ],
         "hintImage" : "images/hintChinese.png"
     },
     {
@@ -44,12 +65,22 @@
         "header" : "Write this word",
         "subheader" : "Definition: Morning",
         "audio" : "audio/morning.ogg",
-        "pronunciation" : "утро",
+        "pronunciation": "утро",
         "definition" : "morning",
         "correctImage" : "images/correctRussian.png",
-        "incorrectImage" : "images/incorrectRussian.png",
-        "traceImage" : "",
-        "hintImage" : "images/hintRussian.png"
+        "incorrectImages" : [
+            "images/incorrectRussian1.png",
+            "images/incorrectRussian2.png",
+            "images/incorrectRussian3.png",
+            "images/incorrectRussian4.png"
+        ],
+        "traceImages" : [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "hintImage" : ""
     },
     {
         "id" : 4,

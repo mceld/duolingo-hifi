@@ -663,6 +663,10 @@ matchingEvent = (event, layer, n) ->
 	layer.animate "load"
 
 	
+for n in [parentMatching.children.length - 1..0]
+	parentMatching.children[n].on Events.Click, (event, layer) ->
+		matchingEvent(event, layer, n)
+
 
 answer = false
 
@@ -694,10 +698,10 @@ restoreDefault = ->
 
 	window.currentChar = 0
 
-	switch window.currentExercise
+	if window.currentExercise >= 6
+		return null
 
-		when 6
-			return null
+	switch window.currentExercise
 
 		when 5
 			wordDisplayType.visible = false
@@ -707,10 +711,6 @@ restoreDefault = ->
 			titleType.x = Align.left(-105)
 			titleType.y = 0
 			titleType.width = 600
-
-			for n in [parentMatching.children.length - 1..0]
-				parentMatching.children[n].on Events.Click, (event, layer) ->
-					matchingEvent(event, layer, n)
 
 			for i in parentTile.children
 				i.visible = false

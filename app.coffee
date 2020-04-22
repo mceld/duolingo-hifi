@@ -295,7 +295,6 @@ parentMatching = new Layer
 	backgroundColor: "transparent"
 
 matchingTile1 = new Layer
-	#image
 	borderColor: "#ababab"
 	parent: parentMatching
 	width: 100
@@ -321,7 +320,6 @@ matchingTile1.states.load =
 	y: Align.top()
 
 matchingTile2 = new Layer
-	#image
 	borderColor: "#ababab"
 	parent: parentMatching
 	width: 100
@@ -347,7 +345,6 @@ matchingTile2.states.load =
 	y: Align.top()
 
 matchingTile3 = new Layer
-	#image
 	borderColor: "#ababab"
 	parent: parentMatching
 	width: 100
@@ -373,7 +370,6 @@ matchingTile3.states.load =
 	y: Align.top()
 
 matchingTile4 = new Layer
-	#image
 	borderColor: "#ababab"
 	parent: parentMatching
 	width: 100
@@ -399,7 +395,6 @@ matchingTile4.states.load =
 	y: Align.bottom(-110)
 
 matchingTile5 = new Layer
-	#image
 	borderColor: "#ababab"
 	parent: parentMatching
 	width: 100
@@ -425,7 +420,6 @@ matchingTile5.states.load =
 	y: Align.bottom(-110)
 
 matchingTile6 = new Layer
-	#image
 	borderColor: "#ababab"
 	parent: parentMatching
 	width: 100
@@ -449,13 +443,6 @@ matchingTile6.states.click =
 
 matchingTile6.states.load =
 	y: Align.bottom(-110)
-
-clickMatchingTile = (child) ->
-	if child.backgroundColor == "#FFFFFF"
-			child.animate "click"
-	else
-		child.animate "default"
-
 
 # hint button and pronunciation aide
 
@@ -534,15 +521,38 @@ useHint = ->
 
 hintButton.on "click", -> useHint()
 
-# Interaction and correctness checkers
+# Interaction and correctness checking
+
+# listener: clickEvent
+
+clickEvent = (child) ->
+	console.log(parentMatching.children)
+	child.animate "click"
 
 
+# n for n in [parentMatching.children.length - 1..0]
+# 	parentMatching.children[n].on "click", (e) => clickEvent(e)
+
+# parentMatching.children.forEach(child => 
+# 	child.on "click", ->
+# 		if child.backgroundColor == "#FFFFFF"
+# 			child.animate "click"
+# 		else
+# 			child.animate "default" )
+
+# for child in parentMatching.children
+# 	child.on "click", ->
+# 		if child.backgroundColor == "#FFFFFF"
+# 			child.animate "click"
+# 		else
+# 			child.animate "default"
 
 answer = false
 
 updateChar = ->
-	console.log("check")
 	window.currentChar = ++window.currentChar
+	if window.currentChar > 3
+		window.currentChar = 0
 	writingTileImage.image = window.exerciseData[window.currentExercise].traceImages[window.currentChar]
 
 
@@ -586,12 +596,18 @@ restoreDefault = ->
 			titleType.y = 0
 			titleType.width = 600
 
+			for n in [parentMatching.children.length - 1..0]
+				parentMatching.children[n].listener = clickEvent(parentMatching.children[n])
+
 			for i in parentTile.children
 				i.visible = false
 		
 			for j in parentMatching.children
 				j.visible = true
 				j.animate "load"
+
+			# for n in [parentMatching.children.length - 1..0]
+			# 	parentMatching.children[n].listener = clickEvent(n)
 
 		when 4
 			wordDisplayType.visible = false

@@ -15,7 +15,7 @@ prototype can be found there.
 4. Download or clone this repository
 5. Replace the contents of the `app` folder in the framer boilerplate with the contents of this project
 6. Replace the contents of the `images` folder in the framer boilerplate with the contents of the images folder found in this project
-7. Move `shrinkwrap.json` into the root of the framer boilerplate and run `npm install` in this directory
+7. Move `npm-shrinkwrap.json` into the root of the framer boilerplate and run `npm install` in this directory
 8. Run `gulp` in the same directory and navigate to `localhost:3000` in your browser, the app should be running.
 
 #### Notes from the boilerplate for additional reference
@@ -26,17 +26,17 @@ can be found below and the documentation for each
 framer module can be found under `modules/documentation.md`
 
 
-# framer-boilerplate
+#### framer-boilerplate
 A boilerplate FramerJS project that uses Gulp for live reload and CoffeScript transpilation + Browserify to include modules.
 
 This project uses the boiler plate from [joetheday/framer-boilerplate](https://github.com/joetheday/framer-boilerplate)
 
-## Before starting
+#### Before starting
 
 1. Install [NodeJS](https://nodejs.org/en/download/)
 2. Install [Git](https://git-scm.com/)
 
-## Get started
+#### Get started
 
 - Run `npm install` from the project folder. This will install all the required dependencies
 - Run `gulp`. If you have not installed it: `npm install -g gulp-cli`

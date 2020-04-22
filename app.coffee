@@ -40,10 +40,10 @@ correctLayer = new Layer
 # animation options
 
 incorrectLayer.animationOptions = 
-	time: .5
+	time: .4
 
 correctLayer.animationOptions = 
-	time: .5
+	time: .4
 
 # active state definitions
 
@@ -130,10 +130,10 @@ continueButton.states.incorrect =
 	shadowColor: "rgba(154, 37, 37, 0.4)"
 
 checkButton.animationOptions = 
-	time: .2
+	time: .1
 
 continueButton.animationOptions = 
-	time: .2
+	time: .1
 
 # Headings for exercises generated dynamically from JSON
 
@@ -179,6 +179,9 @@ writingTile = new Layer
 	shadowBlur: 10
 	shadowY: 9
 	shadowColor: "rgba(196, 196, 196, 0.6)"
+
+writingTile.animationOptions =
+	time: .2
 
 # shift tile up on
 writingTile.animate
@@ -295,6 +298,7 @@ parentMatching = new Layer
 	backgroundColor: "transparent"
 
 matchingTile1 = new Layer
+	name: "heart"
 	borderColor: "#ababab"
 	parent: parentMatching
 	width: 100
@@ -311,15 +315,27 @@ matchingTile1 = new Layer
 	visible: false
 	backgroundColor:"#FFFFFF"
 
+matchingTile1.states.incorrect =
+	borderColor: "#B32E2E"
+	backgroundColor: "rgba(248, 91, 91, .6)"
+
+matchingTile1.states.correct =
+	opacity: .4
+
 matchingTile1.states.click = 
 	borderColor:"#1AA0A9"
-	backgroundColor: "rgba(213, 247, 255, 0.6)"
+	backgroundColor: "#ECFEFF"
 	y: Align.top()
+	opacity: .99
 
 matchingTile1.states.load =
+	opacity: 1
+	borderColor:"#ABABAB"
+	backgroundColor: "#FFFFFF"
 	y: Align.top()
 
 matchingTile2 = new Layer
+	name: "person"
 	borderColor: "#ababab"
 	parent: parentMatching
 	width: 100
@@ -336,15 +352,27 @@ matchingTile2 = new Layer
 	visible: false
 	backgroundColor:"#FFFFFF"
 
+matchingTile2.states.incorrect =
+	borderColor: "#B32E2E"
+	backgroundColor: "rgba(248, 91, 91, .6)"
+
+matchingTile2.states.correct =
+	opacity: .4
+
 matchingTile2.states.click = 
 	borderColor:"#1AA0A9"
-	backgroundColor: "rgba(213, 247, 255, 0.6)"
+	backgroundColor: "#ECFEFF"
 	y: Align.top()
+	opacity: .99
 
 matchingTile2.states.load =
+	opacity: 1
+	borderColor:"#ABABAB"
+	backgroundColor: "#FFFFFF"
 	y: Align.top()
 
 matchingTile3 = new Layer
+	name: "person"
 	borderColor: "#ababab"
 	parent: parentMatching
 	width: 100
@@ -361,15 +389,27 @@ matchingTile3 = new Layer
 	visible: false
 	backgroundColor:"#FFFFFF"
 
+matchingTile3.states.incorrect =
+	borderColor: "#B32E2E"
+	backgroundColor: "rgba(248, 91, 91, .6)"
+
+matchingTile3.states.correct =
+	opacity: .4
+
 matchingTile3.states.click = 
 	borderColor:"#1AA0A9"
-	backgroundColor: "rgba(213, 247, 255, 0.6)"
+	backgroundColor: "#ECFEFF"
 	y: Align.top()
+	opacity: .99
 
 matchingTile3.states.load =
+	opacity: 1
+	borderColor: "#ABABAB"
+	backgroundColor: "#FFFFFF"
 	y: Align.top()
 
 matchingTile4 = new Layer
+	name: "heart"
 	borderColor: "#ababab"
 	parent: parentMatching
 	width: 100
@@ -386,15 +426,27 @@ matchingTile4 = new Layer
 	visible: false
 	backgroundColor:"#FFFFFF"
 
+matchingTile4.states.incorrect =
+	borderColor: "#B32E2E"
+	backgroundColor: "rgba(248, 91, 91, .6)"
+
+matchingTile4.states.correct =
+	opacity: .4
+
 matchingTile4.states.click = 
 	borderColor:"#1AA0A9"
-	backgroundColor: "rgba(213, 247, 255, 0.6)"
+	backgroundColor: "#ECFEFF"
 	y: Align.bottom(-110)
+	opacity: .99
 
 matchingTile4.states.load =
+	opacity: 1
+	borderColor:"#ABABAB"
+	backgroundColor: "#FFFFFF"
 	y: Align.bottom(-110)
 
 matchingTile5 = new Layer
+	name: "hand"
 	borderColor: "#ababab"
 	parent: parentMatching
 	width: 100
@@ -411,15 +463,27 @@ matchingTile5 = new Layer
 	visible: false
 	backgroundColor:"#FFFFFF"
 
+matchingTile5.states.incorrect =
+	borderColor: "#B32E2E"
+	backgroundColor: "rgba(248, 91, 91, .6)"
+
+matchingTile5.states.correct =
+	opacity: .4
+
 matchingTile5.states.click = 
 	borderColor:"#1AA0A9"
-	backgroundColor: "rgba(213, 247, 255, 0.6)"
+	backgroundColor: "#ECFEFF"
 	y: Align.bottom(-110)
+	opacity: .99
 
 matchingTile5.states.load =
+	opacity: 1
+	borderColor:"#ABABAB"
+	backgroundColor: "#FFFFFF"
 	y: Align.bottom(-110)
 
 matchingTile6 = new Layer
+	name: "hand"
 	borderColor: "#ababab"
 	parent: parentMatching
 	width: 100
@@ -436,12 +500,23 @@ matchingTile6 = new Layer
 	visible: false
 	backgroundColor:"#FFFFFF"
 
+matchingTile6.states.incorrect =
+	borderColor: "#B32E2E"
+	backgroundColor: "rgba(248, 91, 91, .6)"
+
+matchingTile6.states.correct =
+	opacity: .4
+
 matchingTile6.states.click = 
 	borderColor:"#1AA0A9"
-	backgroundColor: "rgba(213, 247, 255, 0.6)"
+	backgroundColor: "#ECFEFF"
 	y: Align.bottom(-110)
+	opacity: .99
 
 matchingTile6.states.load =
+	opacity: 1
+	borderColor:"#ABABAB"
+	backgroundColor: "#FFFFFF"
 	y: Align.bottom(-110)
 
 # hint button and pronunciation aide
@@ -464,23 +539,6 @@ wordDisplayType = new Type
 	x: Align.center(-95)
 	y: Align.center(-215)
 	visible: true
-
-# wordDisplayPopUp = new Layer
-# 	borderColor: "#ababab"
-# 	parent: topOfTileParent
-# 	width: 200
-# 	height: 50
-# 	x: Align.center(-540)
-# 	y: Align.center(-228)
-# 	borderWidth: 1.5
-# 	borderColor: "#ababab"
-# 	borderRadius: 8
-# 	shadowBlur: 10
-# 	shadowY: 9
-# 	shadowColor: "rgba(196, 196, 196, 0.6)"
-# 	visible: true
-# 	backgroundColor:"#FFFFFF"
-# 	opacity: 1
 
 hintButton = new Layer
 	parent: writingTile
@@ -525,27 +583,85 @@ hintButton.on "click", -> useHint()
 
 # listener: clickEvent
 
-clickEvent = (child) ->
-	console.log(parentMatching.children)
-	child.animate "click"
+matchingNumClicked = 0
+
+setDefaultMatching = (tile1,tile2) ->
+	# tile1.opacity = 1
+	# tile1.backgroundColor = "#FFFFFF"
+	# tile1.borderColor = "#ABABAB"
+	# tile2.opacity = 1
+	# tile2.backgroundColor = "#FFFFFF"
+	# tile2.borderColor = "#ABABAB"
+	tile1.animate "load"
+	tile2.animate "load"
 
 
-# n for n in [parentMatching.children.length - 1..0]
-# 	parentMatching.children[n].on "click", (e) => clickEvent(e)
+matchingEvent = (event, layer, n) ->
 
-# parentMatching.children.forEach(child => 
-# 	child.on "click", ->
-# 		if child.backgroundColor == "#FFFFFF"
-# 			child.animate "click"
-# 		else
-# 			child.animate "default" )
+	# basic state and value change1
 
-# for child in parentMatching.children
-# 	child.on "click", ->
-# 		if child.backgroundColor == "#FFFFFF"
-# 			child.animate "click"
-# 		else
-# 			child.animate "default"
+	if layer.opacity == .4
+		return
+
+	if layer.opacity != .99
+		
+		matchingNumClicked = ++matchingNumClicked
+		layer.animate "click"
+		layer.opacity = .99
+		console.log(layer.opacity)
+		
+		# check answers based on name
+		if matchingNumClicked >= 2
+			lstName = []
+			lstIndex = []
+			for n in [parentMatching.children.length - 1..0]
+				if parentMatching.children[n].opacity == .99
+					console.log("reached click check")
+					lstName.push parentMatching.children[n].name
+					lstIndex.push n
+
+				console.log(lstName)
+				console.log(lstIndex)
+
+			
+			if lstName[0] == lstName[1]
+				console.log("reached name check")
+				setDefaultMatching(parentMatching.children[lstIndex[0]], parentMatching.children[lstIndex[1]])
+				
+				parentMatching.children[lstIndex[0]].backgroundColor = "#FFFFFF"
+				parentMatching.children[lstIndex[1]].backgroundColor = "#FFFFFF"
+				parentMatching.children[lstIndex[0]].borderColor = "#ABABAB"
+				parentMatching.children[lstIndex[1]].borderColor = "#ABABAB"
+
+				parentMatching.children[lstIndex[0]].animate "correct"
+				parentMatching.children[lstIndex[1]].animate "correct"
+				matchingNumClicked = 0
+				return
+			else
+				parentMatching.children[lstIndex[0]].animate "incorrect"
+				parentMatching.children[lstIndex[1]].animate "incorrect"
+				matchingNumClicked = 0
+
+				callback = () -> 
+					setDefaultMatching(parentMatching.children[lstIndex[0]], parentMatching.children[lstIndex[1]])
+				setTimeout callback, 300
+
+
+
+		return
+
+
+	# if layer.state == "correct"
+	# 	return
+
+
+	layer.backgroundColor = "#FFFFFF"
+	layer.borderColor = "#ABABAB"
+	layer.opacity = 1
+	matchingNumClicked = 0
+	layer.animate "load"
+
+	
 
 answer = false
 
@@ -567,11 +683,6 @@ setAnswer = (code) ->
 		updateChar()
 
 # check for event keycode and run to setAnswer
-# window.addEventListener("keydown", setAnswer(event.keyCode))
-
-# Events.wrap(checkButton).addEventListener "click", (event) ->
-# 	layer.width = Screen.width
-# 	layer.height = Screen.height
 
 window.addEventListener "keypress", (e) => setAnswer(e.keyCode)
 
@@ -597,17 +708,18 @@ restoreDefault = ->
 			titleType.width = 600
 
 			for n in [parentMatching.children.length - 1..0]
-				parentMatching.children[n].listener = clickEvent(parentMatching.children[n])
+				parentMatching.children[n].on Events.Click, (event, layer) ->
+					matchingEvent(event, layer, n)
 
 			for i in parentTile.children
 				i.visible = false
 		
 			for j in parentMatching.children
 				j.visible = true
+				j.animationOptions = 
+					time: .2
 				j.animate "load"
 
-			# for n in [parentMatching.children.length - 1..0]
-			# 	parentMatching.children[n].listener = clickEvent(n)
 
 		when 4
 			wordDisplayType.visible = false
@@ -620,6 +732,8 @@ restoreDefault = ->
 
 			for tile in parentTile.children
 				tile.visible = true
+				tile.animationOptions =
+					time: .2
 				tile.animate "load"
 
 		when 3

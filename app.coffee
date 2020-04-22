@@ -560,6 +560,7 @@ hintButton.states.load =
 
 hintButton.states.used = 
 	backgroundColor: "#ababab"
+	shadowColor:"#AFAFAF"
 	opacity: .4
 
 hintButton.animationOptions = 

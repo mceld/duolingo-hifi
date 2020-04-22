@@ -716,6 +716,7 @@ restoreDefault = ->
 				i.visible = false
 		
 			for j in parentMatching.children
+				j.opacity = 1
 				j.visible = true
 				j.animationOptions = 
 					time: .2

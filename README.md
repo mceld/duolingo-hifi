@@ -6,7 +6,7 @@ This project is part of an RIT design project and analysis for ISTE 264
 information on the premises and technologies developed prior to this 
 prototype can be found there.
 
-## Installing and running this app
+## Running this prototype
 
 1. Install [NodeJS](https://nodejs.org/en/download/)
 1. Install [Git](https://git-scm.com/)
@@ -14,10 +14,10 @@ prototype can be found there.
 1. Download or clone the [framer boilerplate](https://github.com/joetheday/framer-boilerplate)
 1. Download or clone this repository
 1. Replace the contents of the `app` folder in the framer boilerplate with the contents of this project
-1. Replace the contents of the `images` folder in the framer boilerplate with the contents of the images folder found in this project
+1. Replace the contents of the `images` folder in the framer boilerplate with the contents of the `images` folder found in this project
 1. Run `npm install` in the root directory of the framer boilerplate
-7. Move `npm-shrinkwrap.json` into the root of the framer boilerplate and again run `npm install` in this directory
-8. Run `gulp` in the same directory and navigate to `localhost:3000` in your browser, the app should be running.
+7. Move `npm-shrinkwrap.json` into the root of the framer boilerplate and again run `npm install`
+8. Run `gulp` in the same directory and navigate to `localhost:3000` in your browser, the prototype should be running.
 
 #### Notes from the boilerplate for additional reference
 

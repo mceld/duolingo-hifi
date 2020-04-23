@@ -210,6 +210,7 @@ parentTile = new Layer
 	backgroundColor: "transparent"
 
 recogTile1 = new Layer
+	name: "woman"
 	borderColor: "#ababab"
 	parent: parentTile
 	width: 150
@@ -227,9 +228,22 @@ recogTile1 = new Layer
 	image: "images/recogTile1.png"
 
 recogTile1.states.load =
+	backgroundColor: "#FFFFFF"
+	opacity: 1
+	borderColor:"#ABABAB"
 	y: Align.top()
 
+recogTile1.states.click =
+	borderColor:"#1AA0A9"
+	backgroundColor: "#ECFEFF"
+	opacity: .99
+
+recogTile1.states.incorrect =
+	borderColor: "#B32E2E"
+	backgroundColor: "rgba(248, 91, 91, .6)"
+
 recogTile2 = new Layer
+	name: "heart"
 	borderColor: "#ababab"
 	parent: parentTile
 	width: 150
@@ -247,9 +261,22 @@ recogTile2 = new Layer
 	image: "images/recogTile2.png"
 
 recogTile2.states.load =
+	backgroundColor: "#FFFFFF"
+	opacity: 1
+	borderColor:"#ABABAB"
 	y: Align.top()
 
+recogTile2.states.click =
+	borderColor:"#1AA0A9"
+	backgroundColor: "#ECFEFF"
+	opacity: .99
+
+recogTile2.states.incorrect =
+	borderColor: "#B32E2E"
+	backgroundColor: "rgba(248, 91, 91, .6)"
+
 recogTile3 = new Layer
+	name: "hand"
 	borderColor: "#ababab"
 	parent: parentTile
 	width: 150
@@ -267,9 +294,22 @@ recogTile3 = new Layer
 	image: "images/recogTile3.png"
 
 recogTile3.states.load =
+	backgroundColor: "#FFFFFF"
+	opacity: 1
+	borderColor:"#ABABAB"
 	y: Align.bottom()
 
+recogTile3.states.click =
+	borderColor:"#1AA0A9"
+	backgroundColor: "#ECFEFF"
+	opacity: .99
+
+recogTile3.states.incorrect =
+	borderColor: "#B32E2E"
+	backgroundColor: "rgba(248, 91, 91, .6)"
+
 recogTile4 = new Layer
+	name: "person"
 	borderColor: "#ababab"
 	parent: parentTile
 	width: 150
@@ -287,7 +327,19 @@ recogTile4 = new Layer
 	image: "images/recogTile4.png"
 
 recogTile4.states.load =
+	backgroundColor: "#FFFFFF"
+	opacity: 1
+	borderColor:"#ABABAB"
 	y: Align.bottom()
+
+recogTile4.states.click =
+	borderColor:"#1AA0A9"
+	backgroundColor: "#ECFEFF"
+	opacity: .99
+
+recogTile4.states.incorrect =
+	borderColor: "#B32E2E"
+	backgroundColor: "rgba(248, 91, 91, .6)"
 
 parentMatching = new Layer
 	visible: true
@@ -582,20 +634,53 @@ hintButton.on "click", -> useHint()
 
 # Interaction and correctness checking
 
+# indicates whether the user is correct or not
+answer = false
+
 # listener: clickEvent
 
+recogNumClicked = 0
+recogAnswer = "person"
+recogFinished = false
+
+recognitionCheck = ->
+
+	console.log(parentTile.children[3])
+
+	for i in parentTile.children
+		if i.opacity == .99
+			if i.name == recogAnswer
+				answer = true
+				console.log("check")
+				return
+
+	for j in parentTile.children
+		j.animate "load"
+
+	parentTile.children[3].animate "click"
+	answer = false
+
+	recogFinished = true
+
+recognitionEvent = (event, layer, n) ->
+
+	if recogFinished
+		return
+
+	if layer.opacity == .99
+		layer.animate "load"
+	else
+		for i in parentTile.children
+			i.animate "load"
+		layer.animate "click"
+
+
+numSuccessfulMatches = 0
 matchingNumClicked = 0
 
 setDefaultMatching = (tile1,tile2) ->
-	# tile1.opacity = 1
-	# tile1.backgroundColor = "#FFFFFF"
-	# tile1.borderColor = "#ABABAB"
-	# tile2.opacity = 1
-	# tile2.backgroundColor = "#FFFFFF"
-	# tile2.borderColor = "#ABABAB"
 	tile1.animate "load"
 	tile2.animate "load"
-
 
 matchingEvent = (event, layer, n) ->
 
@@ -609,7 +694,6 @@ matchingEvent = (event, layer, n) ->
 		matchingNumClicked = ++matchingNumClicked
 		layer.animate "click"
 		layer.opacity = .99
-		console.log(layer.opacity)
 		
 		# check answers based on name
 		if matchingNumClicked >= 2
@@ -617,16 +701,11 @@ matchingEvent = (event, layer, n) ->
 			lstIndex = []
 			for n in [parentMatching.children.length - 1..0]
 				if parentMatching.children[n].opacity == .99
-					console.log("reached click check")
 					lstName.push parentMatching.children[n].name
 					lstIndex.push n
 
-				console.log(lstName)
-				console.log(lstIndex)
-
 			
 			if lstName[0] == lstName[1]
-				console.log("reached name check")
 				setDefaultMatching(parentMatching.children[lstIndex[0]], parentMatching.children[lstIndex[1]])
 				
 				parentMatching.children[lstIndex[0]].backgroundColor = "#FFFFFF"
@@ -637,6 +716,12 @@ matchingEvent = (event, layer, n) ->
 				parentMatching.children[lstIndex[0]].animate "correct"
 				parentMatching.children[lstIndex[1]].animate "correct"
 				matchingNumClicked = 0
+				numSuccessfulMatches = ++numSuccessfulMatches
+
+				if numSuccessfulMatches == 3
+					answer = true
+					userCorrect()
+
 				return
 			else
 				parentMatching.children[lstIndex[0]].animate "incorrect"
@@ -652,10 +737,6 @@ matchingEvent = (event, layer, n) ->
 		return
 
 
-	# if layer.state == "correct"
-	# 	return
-
-
 	layer.backgroundColor = "#FFFFFF"
 	layer.borderColor = "#ABABAB"
 	layer.opacity = 1
@@ -667,8 +748,9 @@ for n in [parentMatching.children.length - 1..0]
 	parentMatching.children[n].on Events.Click, (event, layer) ->
 		matchingEvent(event, layer, n)
 
-
-answer = false
+for n in [parentTile.children.length - 1..0]
+	parentTile.children[n].on Events.Click, (event, layer) ->
+		recognitionEvent(event, layer, n)
 
 updateChar = ->
 	window.currentChar = ++window.currentChar
@@ -737,6 +819,7 @@ restoreDefault = ->
 				tile.animationOptions =
 					time: .2
 				tile.animate "load"
+			recogFinished = false
 
 		when 3
 			hintButton.animate "load"
@@ -782,6 +865,11 @@ moveExercise = ->
 	#Reset height of correct and incorrect Layers, opacity of correct and incorrect Text, content of checkButton
 
 userCorrect = ->
+
+	if window.currentExercise == 4
+		recognitionCheck()
+		console.log(answer)
+
 	if answer
 		# Change height of correct Layer, opacity of correct Text
 		if window.exerciseData[window.currentExercise].exerciseName == "writeChinese" or window.exerciseData[window.currentExercise].exerciseName == "writeRussian" or window.exerciseData[window.currentExercise].exerciseName == "traceRussian" or window.exerciseData[window.currentExercise].exerciseName == "traceChinese"

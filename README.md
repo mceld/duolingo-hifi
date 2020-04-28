@@ -19,6 +19,14 @@ prototype can be found there.
 7. Move `npm-shrinkwrap.json` into the root of the framer boilerplate and again run `npm install`
 8. Run `gulp` in the same directory and navigate to `localhost:3000` in your browser, the prototype should be running.
 
+### Hotkeys
+
+Pressing the following keys on your keyboard produces the change described
+
+1. "1" changes answer to "correct"
+2. "0" changes answer to "incorrect"
+3. "2" changes the current letter in both Russian exercises
+
 #### Notes from the boilerplate for additional reference
 
 This project was developed using FramerJS.  You can use the 

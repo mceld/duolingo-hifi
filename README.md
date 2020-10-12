@@ -27,6 +27,8 @@ Pressing the following keys on your keyboard produces the change described
 2. "0" changes answer to "incorrect"
 3. "2" changes the current letter in both Russian exercises
 
+------
+
 #### Notes from the boilerplate for additional reference
 
 This project was developed using FramerJS.  You can use the 
